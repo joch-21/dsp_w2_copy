@@ -5,7 +5,7 @@
 
 int main() {
     cout << "========================================\n";
-    cout << "   TESTING BASE & DERIVED ENTITIES      \n";
+    cout << "   PART B: TESTING BASE & DERIVED UNITS \n";
     cout << "========================================\n\n";
 
     // 1. Test Default Constructor
@@ -17,13 +17,13 @@ int main() {
     cout << "HP: " << defaultPlayer.GetCurrentHP() << "/" << defaultPlayer.GetMaxHP() << "\n";
     cout << "Lives: " << defaultPlayer.GetLives() << "\n\n";
 
-    // 2. Test Overloaded Constructor & Accessors (Getters/Setters)
+    // 2. Test Overloaded Constructor & Accessors
     cout << "--- 2. Testing Overloaded Constructor & Accessors ---\n";
     Position heroPos = { 10, 15 };
     Player hero("Knight_Artorias", heroPos, 150, 120, 25, 5, 0);
 
     cout << "Original Name: " << hero.GetID() << "\n";
-    hero.SetID("Ashen_One"); // Test Setter
+    hero.SetID("Ashen_One");
     cout << "Updated Name (Setter): " << hero.GetID() << "\n";
 
     hero.SetPosition({ 12, 18 });
@@ -46,39 +46,20 @@ int main() {
     potion.Use();
     potion.Use();
     potion.Use(); // Testing durability exhaustion
+    cout << "\n";
 
-    cout << "\nAll Entity tests completed successfully.\n";
-    
+    cout << "========================================\n";
+    cout << "   PART C: UNIT INTERACTIONS (STATUS)   \n";
+    cout << "========================================\n\n";
 
-    //Part C
-    cout << "Part C : \n\n";
-
-    // 1. Create a base entity instance
     Entity drone("0001", { 0, 0 }, 100, 100, 15);
+    cout << "PrintStatus() output:\n" << drone.PrintStatus() << "\n\n";
+    cout << "Operator<< output:\n" << drone << "\n\n";
 
-    // a) Test PrintStatus()
-    cout << "--- [A] Testing PrintStatus() ---\n";
-    cout << drone.PrintStatus() << "\n\n";
+    cout << "========================================\n";
+    cout << "   PART D: PARSING COMMANDS VIA TICK    \n";
+    cout << "========================================\n\n";
 
-    // b) Test Insertion Operator (<<)
-    cout << "--- [B] Testing Insertion Operator (<<) ---\n";
-    cout << drone << "\n\n";
-
-    // c) Test Extraction Operator (>>)
-    cout << "--- [C] Testing Extraction Operator (>>) ---\n";
-    cout << "Enter new details for drone (Format: ID X Y MaxHP CurrentHP Attack):\n";
-    cout << "Example: DroneBeta 4 7 150 120 30\n> ";
-    cin >> drone;
-
-    // Verify values were updated via operator<<
-    cout << "\nUpdated Entity Output:\n";
-    cout << drone << "\n\n";
-
-
-    //Part D 
-    cout << "Program Start\n\n";
-
-    // Create test unit
     Entity pudge("Pudge", { 5, 5 }, 200, 200, 45);
     cout << "Initial Status:\n" << pudge << "\n\n";
 
@@ -103,10 +84,9 @@ int main() {
     // 4. Test "Attack"
     cout << "Enter command (e.g., Attack): ";
     cin >> pudge;
-    int damageDealt = pudge.Tick(); 
+    int damageDealt = pudge.Tick();
     cout << pudge.GetID() << " attacks for " << damageDealt << " damage!\n";
     cout << "Current Status -> " << pudge << "\n\n";
-
 
     return 0;
 }
